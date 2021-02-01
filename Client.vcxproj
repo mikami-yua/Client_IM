@@ -142,12 +142,14 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="cmsg_encode.c" />
     <ClCompile Include="list.c" />
+    <ClCompile Include="msg_chiper.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client_user.h" />
     <ClInclude Include="cmsg_encode.h" />
     <ClInclude Include="im_client.h" />
     <ClInclude Include="list.h" />
+    <ClInclude Include="msg_cipher.h" />
     <ClInclude Include="msg_type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

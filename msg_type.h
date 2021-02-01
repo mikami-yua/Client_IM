@@ -133,7 +133,7 @@ typedef struct chat_resp {
 typedef struct logout_msg {
 	int lg_id;
 	char lg_pass[MAX_USERPASSWD_LEN];
-};
+}LOGOUT_MSG;
 
 /*
 线程锁

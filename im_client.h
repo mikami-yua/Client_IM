@@ -13,6 +13,7 @@
 #include "cmsg_encode.h"
 #include"list.h"
 #include"msg_type.h"
+#include"msg_cipher.h"
 
 
 
