@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Client.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="list.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -25,6 +22,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="msg_chiper.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client_handle.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client_log.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client_user.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmsg_decode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cuser_cmd.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client_main.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +60,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="msg_cipher.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client_config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client_handle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client_log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cmsg_decode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cuser_cmd.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,93 @@
+#include"im_client.h"
+
+MYSELF myself;
+
+/*初始化windowssocket*/
+void socklib_init() {
+	WSADATA wsa_data;
+	int ret=WSAStartup(MAKEWORD(2,2),&wsa_data);
+	if (ret != 0) {
+		printf("client:windows socket load failed with err:%d", ret);
+		exit(-1);
+	}
+
+}
+
+
+int client_sock_init(char *ip) {
+	int sfd;
+	struct sockaddr_in serv;
+	socklib_init();
+
+	sfd = socket(AF_INET, SOCK_STREAM, 0);
+	if (sfd < 0) {
+		printf("client:socket err \n");
+		return -1;
+	}
+
+	memset(&serv,0,sizeof(serv));
+	serv.sin_family=AF_INET;
+	serv.sin_port = htons(SERVER_PORT);
+	//判断地址是否正确
+	if (inet_pton(AF_INET, ip, &serv.sin_addr) <= 0) {
+		printf("client:inet_pton err for %s\n", ip);
+		closesocket(sfd);
+		return -2;
+	}
+	//连接服务器
+	int con_num=connect(sfd, (struct sockaddr*)&serv, sizeof(serv));
+
+	//判断连接是否成功
+	if (con_num < 0) {
+		printf("client:connect err\n");
+		return -3;
+	}
+
+	return 0;
+}
+
+
+int init_args(int argc,char **argv) {
+	if (argc != 2) {
+		fprintf(stderr, "usage:%s <ipv4 ip>\n", argv[1]);
+		return -1;
+	}
+	//init client socket fd
+	myself.w_sockfd = client_sock_init(argv[1]);
+	if (myself.w_sockfd < 0) {
+		return -1;
+	}
+
+	return 0;
+}
+
+void* client_cli_thread(void* arg) {
+
+}
+
+
+void client_main_loop() {
+	pthread_t client_stdin_pid;
+	pthread_create(&client_stdin_pid, NULL, client_cli_thread, NULL);
+
+	//对网络子线程p19 5：00
+}
+
+void sock_cleanup(int fd) {
+
+}
+
+/*
+要求只有一个参数ipv4
+*/
+int main(int argc, char** argv) {
+	//用户结构初始化
+	init_user_struct(&myself);
+	//参数初始化
+	if (init_aegs(argc, argv));
+	//客户端主循环
+	client_main_loop();//主线程
+	//清理函数
+	sock_cleanup(myself.w_sockfd);
+	return 0;
+}

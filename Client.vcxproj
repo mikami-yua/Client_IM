@@ -139,14 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="client_handle.c" />
+    <ClCompile Include="client_log.c" />
+    <ClCompile Include="client_main.c" />
+    <ClCompile Include="client_user.c" />
+    <ClCompile Include="cmsg_decode.c" />
     <ClCompile Include="cmsg_encode.c" />
+    <ClCompile Include="cuser_cmd.c" />
     <ClCompile Include="list.c" />
     <ClCompile Include="msg_chiper.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="client_config.h" />
+    <ClInclude Include="client_handle.h" />
+    <ClInclude Include="client_log.h" />
     <ClInclude Include="client_user.h" />
+    <ClInclude Include="cmsg_decode.h" />
     <ClInclude Include="cmsg_encode.h" />
+    <ClInclude Include="cuser_cmd.h" />
     <ClInclude Include="im_client.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="msg_cipher.h" />
