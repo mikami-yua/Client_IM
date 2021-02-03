@@ -3,5 +3,7 @@
 
 int dec_server_resp(char *buf,int n);
 
+int dec_fmgt_resp();
+
 #endif // !CMSG_DECODE_H
 

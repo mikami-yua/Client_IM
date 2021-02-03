@@ -6,12 +6,12 @@
 #include"list.h"
 
 /*好友结构体*/
-struct client_friend {
+typedef struct client_friend {
 	char c_name[MAXNAME_LEN];
 	int c_id;
 	struct list_head c_node;
 	int c_stat;//好友状态
-};
+}CLIENT_FRND;
 
 #define ufrnd_for_each_entry(pos,head,member)\
 	for(pos=(CLIEND_FRND *)list_entry(HEAD->next,CLIEND_FRND,member);\
@@ -43,8 +43,10 @@ typedef struct whoami {
 extern struct MYSELF myself;
 
 int init_user_struct(MYSELF* m);//初始化用户状态
-int user_list_add(MYSELF* m);
-
+int user_list_add(FRND_STAT*fs,short count);
+int user_list_del(FRND_STAT* fs, short count);
+int user_list_update(FRND_STAT* fs, short count);
+int user_list_output(FRND_STAT* fs, short count);
 
 
 #endif // !CLIENT_USER_H

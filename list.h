@@ -26,7 +26,7 @@ struct list_head {
 #define list_for_each_prev(pos,head)\
 	for(pos=(head)->prev;pos!=head;pos=pos->prev)//链表从后向前遍历
 
-#define offset_of(t,m) ((size_t)(&((t *)0)->m)//通过链表遍历访问的是list_head的地址，希望通过指针偏移，把指针移动到client_friend的地址
+#define offset_of(t,m) ((size_t)(&((t *)0)->m)//通过链表遍历访问的是list_head的地址，希望通过指针偏移，把指针移动到client_friend的地址  size_t：32位下是无符号int   64位是无符号long
 
 #define containter_of(ptr,type,member)\
 	(char *)(ptr)-offset_of(type,member)
@@ -35,7 +35,7 @@ struct list_head {
 
 
 
-void _list_add(struct list_head* node, struct list_head* prev, struct list_head* next);
+void _list_add(struct list_head* node, struct list_head* prev, struct list_head *next);
 void _list_del(struct list_head* prev, struct list_head* next);
 void list_add(struct list_head* node, struct list_head* head);
 void list_del(struct list_head *entry);

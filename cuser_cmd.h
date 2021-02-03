@@ -21,13 +21,15 @@
 #define USER_PROM		"im_client"
 #define REG_CMD_FLDS	4//一条注册命令有四个字段
 #define LOGIN_CMD_FLDS	3//登录命令3个字段
+#define LOGOUT_CMD_FLDS 1
+
 
 /*帮助文档*/
 #define REG_C_USAGE "reg <name> <passwd> use name and passwd regin。\n"
 #define FLIST_C_USAGE "flist list add friend.\n"
 
-#define INV_C_USAGE "input cmd cannot illegal"
-
+#define INV_C_USAGE "input cmd cannot illegal\n"
+#define EXIT_C_USAGE "user exit\n"
 /*
 命令处理函数
 @buf:用户输入的命令字符缓冲区
@@ -43,6 +45,10 @@ int user_stat_check(char* token);
 处理注册命令
 */
 int  reg_cmd_process(char *n_token);
+
+int login_cmd_proc(char* n_tok);
+
+int logout_cmd_proc(char* n_tok);
 
 /*
 对命令的各个字段进行分解

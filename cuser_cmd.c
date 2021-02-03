@@ -122,3 +122,24 @@ int  reg_cmd_process(char* n_token) {
 
 }
 
+int login_cmd_proc(char* n_tok) {
+
+	return 0;
+}
+
+int logout_cmd_proc(char* n_tok) {
+	int n;
+	char* p[LOGOUT_CMD_FLDS];
+	if (cmdline_proc(n_tok, p, LOGOUT_CMD_FLDS, 1) == -1) {
+		fprintf(stderr, "%s%s", INV_C_USAGE, EXIT_C_USAGE);
+		return -1;
+	}
+	if (myself.w_cstat == LOGIN_CSTAT) {
+		memset(myself.w_buf, 0, MAX_MSG_SIZE);
+		enc_login_msg(myself.w_buf, &n, 0);
+		send(myself.w_sockfd, myself.w_buf, n, 0);
+		myself.w_cstat = MSG_RCVING;
+	}
+
+	return -2;
+}
