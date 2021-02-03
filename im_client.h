@@ -22,6 +22,7 @@
 #include"cmsg_decode.h"
 #include"cuser_cmd.h"
 
+MYSELF myself;
 
 
 #endif // !IM_CLIENT_H

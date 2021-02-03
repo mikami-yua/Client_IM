@@ -1,6 +1,6 @@
 #include"im_client.h"
 
-MYSELF myself;
+
 
 /*初始化windowssocket*/
 void socklib_init() {
@@ -62,19 +62,60 @@ int init_args(int argc,char **argv) {
 }
 
 void* client_cli_thread(void* arg) {
+	char line[MAX_LINE_LEN];
+	char user_prompt[MAX_PROMPT_LEN];
 
+	while (1) {
+		if (myself.w_id != -1) {
+			//有登录id
+			_snprintf(user_prompt, MAX_PROMPT_LEN, "%s(%s)#",USER_PROM,myself.w_name);//im_client(alice)#
+		}
+		else {
+			//没有登录id
+			_snprintf(user_prompt, MAX_PROMPT_LEN, "%s(unkonwn)#", USER_PROM);
+		}
+
+		printf("%s", user_prompt);
+		memset(line, 0, sizeof(line));
+		//获取用户输入的命令
+		if (fgets(line, MAX_LINE_LEN, stdin) == NULL) {
+			break;
+		}
+		if (line[strlen(line) - 1] == '\n') {
+			line[strlen(line) - 1] = '\0';
+		}
+		if (user_cmd_process(line) == -2) {//代表退出指令
+			printf("client:user logout...\n");
+			break;
+		}
+	}
+	closesocket(myself.w_sockfd);
+	return NULL;
 }
 
-
+/*
+主线程
+*/
 void client_main_loop() {
+	int n;
+
 	pthread_t client_stdin_pid;
 	pthread_create(&client_stdin_pid, NULL, client_cli_thread, NULL);
 
-	//对网络子线程p19 5：00
+	//对网络子线程消息处理
+	n = recv(myself.w_sockfd, myself.w_buf, MAX_MSG_SIZE,0);//从服务器收取报文
+	while (n>0)
+	{
+		printf("client:recv msg len=%d\n", n);
+		dec_server_resp(myself.w_buf,n);
+	}
+
+	printf("client:recv len < 0 exiting...\n");
 }
 
 void sock_cleanup(int fd) {
-
+	closesocket(fd);
+	WSACleanup();
 }
 
 /*

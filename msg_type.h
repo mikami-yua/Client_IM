@@ -108,7 +108,7 @@ typedef struct frnd_op_resp {
 	short fre_stat;//好友的在线状态
 	short fre_num;//对好友操作成功的数目
 	FRND_STAT fre_ok_frnd[0];//好友的状态
-};
+}FRND_RESP;
 
 /*
 聊天信息
