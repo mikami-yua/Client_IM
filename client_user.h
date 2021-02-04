@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CLIENT_USER_H
 #define CLIENT_USER_H
 /*客户端好友管理*/

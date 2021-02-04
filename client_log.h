@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CLIENT_LOG_H
 #define CLIENT_LOG_H
  

@@ -72,6 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>E:\c_project\Client\dll;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>E:\c_project\Client\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\c_project\Client\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

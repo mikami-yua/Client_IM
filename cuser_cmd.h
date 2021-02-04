@@ -4,6 +4,7 @@
 #define CUSER_CMD_H
 
 #define REG_CMD		"reg"
+#pragma once
 #define LOGIN_CMD	"login"
 #define FLIST_CMD	"flist"
 #define FADD_CMD	"add"

@@ -13,7 +13,15 @@ void socklib_init() {
 
 }
 
+/*socket清理*/
+void sock_cleanup(int fd) {
+	closesocket(fd);
+	WSACleanup();
+}
 
+/*
+socket的初始化
+*/
 int client_sock_init(char *ip) {
 	int sfd;
 	struct sockaddr_in serv;
@@ -46,14 +54,16 @@ int client_sock_init(char *ip) {
 	return 0;
 }
 
-
+/*
+初始化参数
+*/
 int init_args(int argc,char **argv) {
 	if (argc != 2) {
 		fprintf(stderr, "usage:%s <ipv4 ip>\n", argv[1]);
 		return -1;
 	}
 	//init client socket fd
-	myself.w_sockfd = client_sock_init(argv[1]);
+	myself.w_sockfd = client_sock_init(argv[1]);//通过ip地址初始化一个客户端的socket
 	if (myself.w_sockfd < 0) {
 		return -1;
 	}
@@ -61,6 +71,9 @@ int init_args(int argc,char **argv) {
 	return 0;
 }
 
+/*
+多线程
+*/
 void* client_cli_thread(void* arg) {
 	char line[MAX_LINE_LEN];
 	char user_prompt[MAX_PROMPT_LEN];
@@ -100,23 +113,20 @@ void client_main_loop() {
 	int n;
 
 	pthread_t client_stdin_pid;
-	pthread_create(&client_stdin_pid, NULL, client_cli_thread, NULL);
+	pthread_create(&client_stdin_pid, NULL, client_cli_thread, NULL);//创建多线程
 
 	//对网络子线程消息处理
 	n = recv(myself.w_sockfd, myself.w_buf, MAX_MSG_SIZE,0);//从服务器收取报文
 	while (n>0)
 	{
 		printf("client:recv msg len=%d\n", n);
-		dec_server_resp(myself.w_buf,n);
+		dec_server_resp(myself.w_buf,n);//解析服务器收到的消息
 	}
 
 	printf("client:recv len < 0 exiting...\n");
 }
 
-void sock_cleanup(int fd) {
-	closesocket(fd);
-	WSACleanup();
-}
+
 
 /*
 要求只有一个参数ipv4

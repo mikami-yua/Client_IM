@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CMSG_ENCODE_H
 #define CMSG_ENCODE_H
 

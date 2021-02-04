@@ -58,6 +58,7 @@ typedef struct erg_msgdata {
 	char r_passwd[MAX_USERPASSWD_LEN];
 }REG_MSG;
 
+#define MAX_ERR_LEN 80
 typedef struct reg_msg_resp {
 	//将uid返回给客户端 -1出错
 	int re_id;
