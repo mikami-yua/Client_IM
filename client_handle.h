@@ -1,6 +1,7 @@
 #pragma once
 #ifndef  CLIENT_HANDLE_H
 #define CLIENT_HANDLE_H
+#include"msg_type.h"
 
 int handle_reg_resp(REG_RESP *r);
 int handle_login_resp(LOGIN_RESP* l);

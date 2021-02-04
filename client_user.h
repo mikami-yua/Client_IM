@@ -3,7 +3,6 @@
 #define CLIENT_USER_H
 /*客户端好友管理*/
 #include"msg_type.h"
-
 #include"list.h"
 
 /*好友结构体*/
@@ -15,9 +14,9 @@ typedef struct client_friend {
 }CLIENT_FRND;
 
 #define ufrnd_for_each_entry(pos,head,member)\
-	for(pos=(CLIEND_FRND *)list_entry(HEAD->next,CLIEND_FRND,member);\
+	for(pos=(CLIENT_FRND *)list_entry((head)->next,CLIENT_FRND,member);\
 		pos->member!=(head);\
-		pos=(CLIEND_FRND *)list_entry(pos->member.next,CLIEND_FRND,member))
+		pos=(CLIENT_FRND *)list_entry(pos->member.next,CLIENT_FRND,member))
 
 #define INIT_CSTAT 0
 #define LOGIN_CSTAT 1

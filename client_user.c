@@ -78,7 +78,9 @@ int user_list_del(FRND_STAT* fs, short count) {
 	return 0;
 }
 int user_list_update(FRND_STAT* fs, short count) {
-
+	for (int i = 0; i < count; i++) {
+		printf("client:user %dth,name=%s,id=%d,stat=%d\n", i, fs[i].fr_name, fs[i].fr_id, fs[i].fr_stat);
+	}
 }
 int user_list_output(FRND_STAT* fs, short count) {
 	for (int i = 0; i < count ; i++) {
