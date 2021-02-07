@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 #ifndef LIST_H
 #define LIST_H
 
-#include "msg_type.h"
+//#include "msg_type.h"
 
 struct list_head {
 	struct list_head * next, * prev;
@@ -27,12 +27,13 @@ struct list_head {
 #define list_for_each_prev(pos,head)\
 	for(pos=(head)->prev;pos!=head;pos=pos->prev)//链表从后向前遍历
 
-#define offset_of(t,m) ((size_t)(&((t *)0)->m)//通过链表遍历访问的是list_head的地址，希望通过指针偏移，把指针移动到client_friend的地址  size_t：32位下是无符号int   64位是无符号long
+#define offset_of(t,m) ((size_t)(&((t *)0)->m))//通过链表遍历访问的是list_head的地址，希望通过指针偏移，把指针移动到client_friend的地址  size_t：32位下是无符号int   64位是无符号long
 
 #define containter_of(ptr,type,member)\
-	(char *)(ptr)-offset_of(type,member)
+	((char *)(ptr))-offset_of(type,member)
 
-#define list_entry(ptr,type,member) containter_of(ptr,type,member)//实现指针类型的转换
+#define list_entry(ptr,type,member)\
+	containter_of(ptr,type,member)
 
 
 

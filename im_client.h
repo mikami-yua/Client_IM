@@ -25,7 +25,6 @@
 #include"client_log.h"
 
 
-MYSELF myself;
 
 
 #endif // !IM_CLIENT_H

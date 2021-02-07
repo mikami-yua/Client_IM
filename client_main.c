@@ -59,7 +59,7 @@ int client_sock_init(char *ip) {
 */
 int init_args(int argc,char **argv) {
 	if (argc != 2) {
-		fprintf(stderr, "usage:%s <ipv4 ip>\n", argv[1]);
+		fprintf(stderr, "usage:%s <ipv4 ip>\n", argv[0]);
 		return -1;
 	}
 	//init client socket fd
@@ -135,7 +135,7 @@ int main(int argc, char** argv) {
 	//用户结构初始化
 	init_user_struct(&myself);
 	//参数初始化
-	if (init_aegs(argc, argv));
+	if (init_args(argc, argv));
 	//客户端主循环
 	client_main_loop();//主线程
 	//清理函数

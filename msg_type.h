@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define SERVER_FORWARD_FLAG (0x1<<15)//是否有服务器转发消息
 

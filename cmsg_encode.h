@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 #ifndef CMSG_ENCODE_H
 #define CMSG_ENCODE_H
 
-#include"im_client.h"
+//#include"im_client.h"
 
 int init_reg_struct(REG_MSG* r, MYSELF* m);
 int enc_reg_msg(char* buf, int *n, unsigned char stype);

@@ -1,4 +1,4 @@
-#include"list.h"
+﻿#include"list.h"
 
 /*
 	插入一个新节点

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef MSG_CIPHER_H
 #define MSG_CIPHER_H
 

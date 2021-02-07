@@ -15,7 +15,7 @@ int handle_login_resp(LOGIN_RESP* l) {
 
 	if (l->lg_stat == LOGIN_OK) {
 		myself.w_cstat = LOGIN_CSTAT;
-		memeset(myself.w_name, 0, MAXNAME_LEN);
+		memset(myself.w_name, 0, MAXNAME_LEN);
 		strncpy(myself.w_name, l->lg_name, MAXNAME_LEN - 1);
 		return 0;
 	}

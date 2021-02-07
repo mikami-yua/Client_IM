@@ -1,4 +1,4 @@
-#include"im_client.h"
+﻿#include"im_client.h"
 
 
 /*
@@ -364,8 +364,9 @@ int debug_cmd_proc(char* n_tok) {
 	CLIENT_FRND* pos;
 	printf("client:name=%s,id=%d,passwd=%s\n", myself.w_name, myself.w_id, myself.w_pass);
 	printf("client:sockfd=%d,cstat=%d,friend count=%d\n", myself.w_sockfd, myself.w_cstat, myself.w_fndcnt);
-	ufrnd_for_each_entry(pos, &myself.w_flisthd, c_node) {
-		printf("client:friend id=%d,name=%s,stat=%%d", pos->c_id, pos->c_name, pos->c_stat);
+
+	ufrnd_for_each_entry(pos, &myself.w_flisthd, c_node){
+		printf("client:friend id=%d,name=%s,stat=%d", pos->c_id, pos->c_name, pos->c_stat);
 	}
 	return 0;
 }

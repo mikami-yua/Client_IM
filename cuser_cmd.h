@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 /*用户输入命令处理*/
 #ifndef CUSER_CMD_H
 #define CUSER_CMD_H

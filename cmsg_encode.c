@@ -1,4 +1,4 @@
-#include"im_client.h"
+﻿#include"im_client.h"
 
 /*
 初始化注册消息的结构体
@@ -9,6 +9,17 @@ int init_reg_struct(REG_MSG* r, MYSELF* m) {
 	strncpy(r->r_passwd, m->w_pass, MAX_USERPASSWD_LEN);
 	return sizeof(REG_MSG);
 }
+
+/*
+注册消息的封装
+*/
+int enc_reg_msg(char* buf, int* n, unsigned char stype) {
+	*n = init_reg_struct((REG_MSG*)(((MSG_HDR*)buf)->msg_data), &myself);
+	init_msg_hdr((MSG_HDR*)(buf), MSG_REG, stype, sizeof(REG_MSG));
+	*n += sizeof(MSG_HDR);
+	return *n;
+}
+
 /*
 unsigned char type 
 unsigned char stype
@@ -25,7 +36,7 @@ void init_msg_hdr(MSG_HDR* h, unsigned char type, unsigned char stype, int n) {
 int init_login_struct(LOGIN_MSG* i, MYSELF* m) {
 	memset(i, 0, sizeof(*i));
 	i->lg_id = htonl(m->w_id);//host to net
-	strcpy(i->lg_pass, m->w_pass, MAX_USERPASSWD_LEN-1);
+	strncpy(i->lg_pass, m->w_pass, MAX_USERPASSWD_LEN-1);
 	return sizeof(LOGIN_MSG);
 }
 
@@ -132,3 +143,4 @@ int enc_fmgt_msg(char* buf, int *n, unsigned char stype, int* id, int cnt) {
 	*n += sizeof(MSG_HDR);
 	return *n;
 }
+

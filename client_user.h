@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 #ifndef CLIENT_USER_H
 #define CLIENT_USER_H
 /*客户端好友管理*/
 #include"msg_type.h"
 #include"list.h"
+//#include"im_client.h"
 
 /*好友结构体*/
 typedef struct client_friend {
@@ -14,9 +15,8 @@ typedef struct client_friend {
 }CLIENT_FRND;
 
 #define ufrnd_for_each_entry(pos,head,member)\
-	for(pos=(CLIENT_FRND *)list_entry((head)->next,CLIENT_FRND,member);\
-		pos->member!=(head);\
-		pos=(CLIENT_FRND *)list_entry(pos->member.next,CLIENT_FRND,member))
+	for((pos=(CLIENT_FRND *)list_entry((head)->next,CLIENT_FRND,member));\
+		(((&pos->member))!=(head));pos=(CLIENT_FRND *)list_entry((pos)->member.next,CLIENT_FRND,member))
 
 #define INIT_CSTAT 0
 #define LOGIN_CSTAT 1
@@ -24,7 +24,7 @@ typedef struct client_friend {
 #define MSG_SENDING 0
 #define MSG_RCVING 1
 
-/*y用户本身的结构体*/
+/* y用户本身的结构体 */
 typedef struct whoami {
 	int w_id;
 	char w_name[MAXNAME_LEN];
@@ -40,7 +40,7 @@ typedef struct whoami {
 	char w_msgtype;//expected msg type
 }MYSELF;
 
-extern struct MYSELF myself;
+extern struct whoami myself;
 
 int init_user_struct(MYSELF* m);//初始化用户状态
 int user_list_add(FRND_STAT*fs,short count);

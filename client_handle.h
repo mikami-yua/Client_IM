@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef  CLIENT_HANDLE_H
 #define CLIENT_HANDLE_H
 #include"msg_type.h"

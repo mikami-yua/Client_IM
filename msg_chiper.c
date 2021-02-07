@@ -1,4 +1,4 @@
-#include"msg_cipher.h"
+﻿#include"msg_cipher.h"
 
 void msg_enchiper(char* msg, int key) {
 	for (int i = 0; msg[i]; i++) {

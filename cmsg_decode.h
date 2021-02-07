@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #ifndef CMSG_DECODE_H
 #define CMSG_DECODE_H
 

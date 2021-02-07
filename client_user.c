@@ -1,4 +1,6 @@
-#include"im_client.h"
+﻿#include"im_client.h"
+
+struct whoami myself;
 /*
 初始化用户的结构体
 */
@@ -26,9 +28,9 @@ int user_list_add(FRND_STAT* fs, short count) {
 		printf("client:user %d,name %s ,id %d,stat %d\n",
 			i, fs[i].fr_name, fs[i].fr_id, fs[i].fr_stat);
 	}
-	for (int i; i < count; i++) {
+	for (int i=0; i < count; i++) {
 		list_for_each(pos, head) {//遍历双链表中的好友，使用指针便宜到结构体的头部
-			cp = (CLIENT_FRND*)list_entry(pos, CLIENT_FRND, c_node));
+			cp = (CLIENT_FRND*)list_entry(pos, CLIENT_FRND, c_node);
 			if (cp->c_id==fs[i].fr_id) {
 				strcpy(cp->c_name, fs[i].fr_name);
 				cp->c_stat = fs[i].fr_stat;
@@ -60,9 +62,9 @@ int user_list_del(FRND_STAT* fs, short count) {
 	CLIENT_FRND* cp;
 	struct list_head* pos = NULL, * head = &myself.w_flisthd;
 
-	for (int i; i < count; i++) {
+	for (int i=0; i < count; i++) {
 		list_for_each(pos, head) {//遍历双链表中的好友，使用指针offset到结构体的头部
-			cp = (CLIENT_FRND *)list_entry(pos, CLIENT_FRND, c_node));
+			cp = (CLIENT_FRND *)list_entry(pos, CLIENT_FRND, c_node);
 			if (cp->c_id == fs[i].fr_id) {//找到了
 				
 				break;
@@ -71,7 +73,7 @@ int user_list_del(FRND_STAT* fs, short count) {
 		if (pos == head) {
 			continue;
 		}
-		cp= (CLIENT_FRND *)list_entry(pos, CLIENT_FRND, c_node ));
+		cp= (CLIENT_FRND *)list_entry(pos, CLIENT_FRND, c_node );
 		list_del(&(cp->c_node));
 		free(cp);
 	}
